@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { CheckCircle, Zap, Star, Quote, ArrowRight, Code, Palette, Database } from "lucide-react";
+import { CheckCircle, Zap, Star, ArrowRight, Code, Palette, Database } from "lucide-react";
 
 const stats = [
   { icon: CheckCircle, value: "250+", label: "Proyek Selesai", color: "text-green-400" },
@@ -63,10 +63,10 @@ const services = [
 export default function Stats() {
   return (
     <section className="relative py-24 px-6 overflow-hidden">
-      {/* Background - Subtle */}
+      {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-[80px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]" />
+        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-[80px] animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] animate-float-slow" />
       </div>
 
       <div className="max-w-7xl mx-auto">
@@ -79,13 +79,13 @@ export default function Stats() {
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
-            <div className="w-2 h-2 rounded-full bg-purple-500" />
+            <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-purple-500/50" />
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
             Apa Kata{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-shift_6s_ease_infinite]">
               Klien
             </span>
           </h2>
@@ -105,8 +105,12 @@ export default function Stats() {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -4 }}
-              className="bg-white/5 rounded-2xl p-6 border border-white/5 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="glass-premium rounded-2xl p-6 border border-white/10 hover:border-purple-500/30 transition-all duration-300 text-center"
             >
               <stat.icon className={`mx-auto mb-3 ${stat.color}`} size={28} />
               <div className="text-2xl md:text-3xl font-black text-white mb-1">
@@ -127,24 +131,25 @@ export default function Stats() {
           className="flex flex-wrap justify-center gap-4 mb-16"
         >
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="flex items-center gap-3 px-5 py-3 rounded-full bg-white/5 border border-white/10"
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-3 px-5 py-3 rounded-full glass-premium border border-white/10 hover:border-purple-500/30 transition-all duration-300"
             >
               <service.icon className="text-purple-400" size={18} />
               <div>
                 <div className="text-sm font-semibold text-white">{service.title}</div>
                 <div className="text-xs text-zinc-500">{service.desc}</div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
         {/* Testimonials Marquee */}
         <div className="relative mb-16 overflow-hidden">
           {/* Gradient Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#050816] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#050816] to-transparent z-10 pointer-events-none" />
 
           {/* Row 1 */}
           <div className="overflow-hidden mb-6">
@@ -154,9 +159,10 @@ export default function Stats() {
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             >
               {[...testimonials.slice(0, 3), ...testimonials.slice(0, 3)].map((testimonial, index) => (
-                <div
+                <motion.div
                   key={`r1-${index}`}
-                  className="bg-white/5 rounded-2xl p-5 border border-white/10 w-72 md:w-80 flex-shrink-0"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="glass-premium rounded-2xl p-5 border border-white/10 hover:border-purple-500/30 transition-all duration-300 w-72 md:w-80 flex-shrink-0"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
@@ -176,7 +182,7 @@ export default function Stats() {
                   </div>
 
                   <p className="text-sm text-zinc-400 italic line-clamp-2">"{testimonial.text}"</p>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>
@@ -189,9 +195,10 @@ export default function Stats() {
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             >
               {[...testimonials.slice(3), ...testimonials.slice(3)].map((testimonial, index) => (
-                <div
+                <motion.div
                   key={`r2-${index}`}
-                  className="bg-white/5 rounded-2xl p-5 border border-white/10 w-72 md:w-80 flex-shrink-0"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="glass-premium rounded-2xl p-5 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 w-72 md:w-80 flex-shrink-0"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-600 to-blue-600 flex items-center justify-center">
@@ -211,7 +218,7 @@ export default function Stats() {
                   </div>
 
                   <p className="text-sm text-zinc-400 italic line-clamp-2">"{testimonial.text}"</p>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>
@@ -228,7 +235,7 @@ export default function Stats() {
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.02 }}
-              className="px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 font-bold text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center justify-center gap-2"
+              className="px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 font-bold text-white hover:shadow-lg hover:shadow-purple-500/40 transition-all flex items-center justify-center gap-2"
             >
               Mulai Proyek Anda
               <ArrowRight size={18} />
@@ -237,7 +244,7 @@ export default function Stats() {
             <motion.a
               href="/marketplace"
               whileHover={{ scale: 1.02 }}
-              className="px-8 py-4 rounded-full bg-white/5 font-bold text-white hover:bg-white/10 transition-all border border-white/10 backdrop-blur-sm"
+              className="px-8 py-4 rounded-full glass-premium font-bold text-white hover:bg-white/10 transition-all border border-white/10 backdrop-blur-xl"
             >
               Lihat Marketplace
             </motion.a>

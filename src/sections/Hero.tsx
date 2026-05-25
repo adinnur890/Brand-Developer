@@ -17,13 +17,14 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative py-28 lg:py-36 overflow-hidden">
-      {/* Background Orbs - Subtle */}
+      {/* Background Orbs */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/15 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/15 rounded-full blur-[100px] animate-float" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] animate-float-slow" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-64 h-64 bg-pink-600/8 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
-      {/* Grid overlay - Subtle */}
+      {/* Grid overlay */}
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(124,58,237,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       {/* Floating particles */}
@@ -31,7 +32,7 @@ export default function Hero() {
         {particles.map((particle, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-purple-500/20 rounded-full animate-float"
+            className="absolute w-1 h-1 bg-purple-500/30 rounded-full animate-float"
             style={{
               top: particle.top,
               left: particle.left,
@@ -46,13 +47,13 @@ export default function Hero() {
       <div className="relative z-20 max-w-7xl mx-auto px-6 text-center">
         {/* Animated Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-purple-300 text-xs font-medium mb-8 backdrop-blur-sm"
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-premium border border-purple-500/20 text-purple-300 text-xs font-medium mb-8 animate-glow"
         >
-          <Sparkles size={14} className="text-purple-400" />
-          <span>Full Stack Developer Agency</span>
+          <Sparkles size={14} className="text-purple-400 animate-pulse" />
+          <span className="font-semibold">Full Stack Developer Agency</span>
         </motion.div>
 
         {/* Main heading */}
@@ -63,11 +64,11 @@ export default function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6"
         >
           Bangun Website{" "}
-          <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-shift_6s_ease_infinite]">
             Premium
           </span>
           <br />
-          Untuk Bisnis Anda
+          <span className="text-white">Untuk Bisnis Anda</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -78,7 +79,10 @@ export default function Hero() {
           className="text-base md:text-lg text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           Brand Developer membantu bisnis, UMKM, startup, dan personal brand 
-          memiliki website modern, cepat, elegan, dan profesional.
+          memiliki website <span className="text-purple-400 font-semibold">modern</span>,{" "}
+          <span className="text-blue-400 font-semibold">cepat</span>,{" "}
+          <span className="text-cyan-400 font-semibold">elegan</span>, dan{" "}
+          <span className="text-pink-400 font-semibold">profesional</span>.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -90,9 +94,9 @@ export default function Hero() {
         >
           <motion.a
             href="#contact"
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
-            className="group px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 font-semibold text-white text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center gap-2"
+            className="group px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 font-bold text-white text-sm hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 flex items-center justify-center gap-2"
           >
             <Code2 size={18} />
             Pesan Jasa
@@ -100,9 +104,9 @@ export default function Hero() {
           </motion.a>
           <motion.a
             href="/marketplace"
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
-            className="px-8 py-4 rounded-full bg-white/5 font-semibold text-white text-sm hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-sm"
+            className="px-8 py-4 rounded-full glass-premium font-bold text-white text-sm hover:bg-white/10 transition-all duration-300 border border-white/20 backdrop-blur-xl"
           >
             Program Siap Pakai
           </motion.a>
@@ -120,12 +124,16 @@ export default function Hero() {
             { icon: Shield, color: "text-green-400", label: "Aman" },
             { icon: Globe, color: "text-blue-400", label: "Modern" },
           ].map((item, index) => (
-            <div key={index} className="flex flex-col items-center gap-2">
-              <div className={`p-3 rounded-full bg-white/5 border border-white/10 ${item.color}`}>
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.1, y: -3 }}
+              className="flex flex-col items-center gap-2"
+            >
+              <div className={`p-3 rounded-full glass-premium ${item.color} animate-glow`}>
                 <item.icon size={20} />
               </div>
-              <span className="text-xs text-zinc-500">{item.label}</span>
-            </div>
+              <span className="text-xs text-zinc-500 font-medium">{item.label}</span>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -137,19 +145,23 @@ export default function Hero() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto"
         >
           {[
-            { value: "50+", label: "Proyek Selesai" },
-            { value: "30+", label: "Klien Puas" },
-            { value: "24/7", label: "Support" },
-            { value: "100%", label: "Kepuasan" },
+            { value: "50+", label: "Proyek Selesai", color: "from-purple-400 to-blue-400" },
+            { value: "30+", label: "Klien Puas", color: "from-pink-400 to-purple-400" },
+            { value: "24/7", label: "Support", color: "from-cyan-400 to-blue-400" },
+            { value: "100%", label: "Kepuasan", color: "from-green-400 to-cyan-400" },
           ].map((stat, index) => (
-            <div key={index} className="bg-white/5 rounded-xl p-4 border border-white/5">
-              <div className="text-2xl md:text-3xl font-black text-white">
+            <motion.div
+              key={index}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="glass-premium rounded-2xl p-4 border border-white/10 hover:border-purple-500/30 transition-all duration-300"
+            >
+              <div className={`text-2xl md:text-3xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1`}>
                 {stat.value}
               </div>
-              <div className="text-xs text-zinc-500 mt-1 font-medium uppercase tracking-wider">
+              <div className="text-xs text-zinc-500 font-medium uppercase tracking-wider">
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
@@ -161,11 +173,11 @@ export default function Hero() {
         transition={{ delay: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
-        <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
+        <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2 hover:border-purple-500/50 transition-colors">
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 rounded-full bg-white/60"
+            className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-400 to-blue-400"
           />
         </div>
       </motion.div>

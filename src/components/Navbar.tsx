@@ -1,7 +1,7 @@
-      "use client";
+"use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -27,93 +27,103 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#050505]/80 backdrop-blur-xl border-b border-white/5"
-          : "bg-transparent"
+          ? "mx-4 max-w-[calc(100%-2rem)]"
+          : "mx-4 max-w-[calc(100%-2rem)]"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#home" className="flex items-center gap-3">
-            <div className="relative w-8 h-8 md:w-10 md:h-10">
-              <Image
-                src="/brand-developer.svg"
-                alt="Brand Developer"
-                fill
-                className="object-contain"
-              />
+      <div className={`rounded-full backdrop-blur-2xl border transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/10 border-white/15 shadow-lg shadow-purple-500/10"
+          : "bg-white/5 border-white/10"
+      }`}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between h-14 md:h-16">
+            {/* Logo */}
+            <a href="#home" className="flex items-center gap-3 group">
+              <div className="relative w-8 h-8 md:w-10 md:h-10">
+                <Image
+                  src="/brand-developer.svg"
+                  alt="Brand Developer"
+                  fill
+                  className="object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              <span className="text-white font-bold text-lg md:text-xl group-hover:text-purple-300 transition-colors duration-300">
+                Brand Developer
+              </span>
+            </a>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="px-4 py-2 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-all duration-300 text-sm font-medium"
+                >
+                  {link.name}
+                </a>
+              ))}
             </div>
-            <span className="text-white font-bold text-lg md:text-xl">Brand Developer</span>
-          </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {/* CTA Button */}
+            <div className="hidden md:flex items-center">
               <a
-                key={link.name}
-                href={link.href}
-                className="text-zinc-400 hover:text-white transition-colors text-sm font-medium"
+                href="https://wa.me/6283879204375?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20gratis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 text-white font-semibold text-sm hover:scale-105 hover:shadow-lg hover:shadow-purple-500/40 transition-all duration-300"
               >
-                {link.name}
+                <Sparkles size={14} className="animate-pulse" />
+                Konsultasi Gratis
+                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
               </a>
-            ))}
-          </div>
+            </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center">
-            <a
-              href="https://wa.me/6283879204375?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20gratis"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden text-white p-2 hover:bg-white/5 rounded-full transition-colors"
             >
-              Konsultasi Gratis
-              <ArrowRight size={16} />
-            </a>
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white p-2"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-[#050505]/95 backdrop-blur-xl border-b border-white/10"
-        >
-          <div className="px-6 py-4 space-y-4">
-            {navLinks.map((link) => (
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="md:hidden bg-white/5 backdrop-blur-xl border-t border-white/10 rounded-b-3xl"
+          >
+            <div className="px-6 py-4 space-y-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-4 py-3 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 transition-all duration-300 font-medium"
+                >
+                  {link.name}
+                </a>
+              ))}
               <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-zinc-400 hover:text-white transition-colors py-2 font-medium"
+                href="https://wa.me/6283879204375?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20gratis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 text-white font-semibold hover:scale-[1.02] transition-all duration-300 mt-4"
               >
-                {link.name}
+                <Sparkles size={14} />
+                Konsultasi Gratis
+                <ArrowRight size={14} />
               </a>
-            ))}
-            <a
-              href="https://wa.me/6283879204375?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20gratis"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:opacity-90 transition-opacity"
-            >
-              Konsultasi Gratis
-              <ArrowRight size={16} />
-            </a>
-          </div>
-        </motion.div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </div>
     </motion.nav>
   );
 }
