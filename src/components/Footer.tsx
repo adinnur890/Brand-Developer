@@ -8,13 +8,13 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="border-t border-white/10 bg-[#050505]">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <footer id="contact" className="glass-premium neon-glow border-t border-white/10 bg-[#0A0E1A]/80 backdrop-blur-2xl relative mt-24">
+      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-8 h-8">
+              <div className="relative w-10 h-10 drop-shadow-[0_0_16px_rgba(139,92,246,0.25)]">
                 <Image
                   src="/brand-developer.svg"
                   alt="Brand Developer"
@@ -22,29 +22,29 @@ export default function Footer() {
                   className="object-contain"
                 />
               </div>
-              <span className="text-white font-bold text-lg">Brand Developer</span>
+              <span className="text-white font-extrabold text-xl tracking-tight drop-shadow-[0_0_8px_rgba(139,92,246,0.15)]">Brand Developer</span>
             </div>
-            <p className="text-sm text-zinc-500 mb-4">
+            <p className="text-sm text-zinc-400 mb-4 max-w-xs">
               Jasa IT Profesional untuk Mahasiswa. Bantu tugas, project, dan deadline IT dengan cepat, rapi, dan terpercaya.
             </p>
           </div>
 
           {/* Layanan */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Layanan</h4>
+            <h4 className="text-white font-semibold mb-4 tracking-wide">Layanan</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#services" className="text-zinc-500 hover:text-white transition-colors text-sm">
+                <a href="#services" className="text-zinc-400 hover:text-purple-400 transition-colors text-sm font-medium">
                   Website Development
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-zinc-500 hover:text-white transition-colors text-sm">
+                <a href="#services" className="text-zinc-400 hover:text-purple-400 transition-colors text-sm font-medium">
                   UI/UX Design
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-zinc-500 hover:text-white transition-colors text-sm">
+                <a href="#services" className="text-zinc-400 hover:text-purple-400 transition-colors text-sm font-medium">
                   Dokumentasi Sistem
                 </a>
               </li>
@@ -53,11 +53,11 @@ export default function Footer() {
 
           {/* Kontak */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Kontak</h4>
+            <h4 className="text-white font-semibold mb-4 tracking-wide">Kontak</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone className="text-purple-400 flex-shrink-0 mt-0.5" size={16} />
-                <a href="https://wa.me/6283879204375" className="text-zinc-500 hover:text-white transition-colors text-sm">
+                <a href="https://wa.me/6283879204375" className="text-zinc-400 hover:text-purple-400 transition-colors text-sm font-medium">
                   +62 838-792-04375 (WhatsApp)
                 </a>
               </li>

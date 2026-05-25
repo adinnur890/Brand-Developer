@@ -12,42 +12,42 @@ const stats = [
 const testimonials = [
   {
     project: "Website POS",
-    date: "12 Agu 2024",
+    date: "12 Agu 2025",
     rating: "10/10",
     text: "Tim sangat profesional dan responsif. Website POS full stack yang dibuat sesuai dengan kebutuhan bisnis kami. Highly recommended!",
     icon: Code,
   },
   {
     project: "E-Commerce",
-    date: "15 Jun 2024",
+    date: "15 Jun 2025",
     rating: "10/10",
     text: "Website e-commerce full stack yang modern dan lengkap dengan fitur payment gateway. Penjualan online kami meningkat drastis!",
     icon: Database,
   },
   {
     project: "Dashboard",
-    date: "28 Mei 2024",
+    date: "28 Mei 2025",
     rating: "10/10",
     text: "Dashboard full stack yang dibuat sangat informatif dan real-time. Backend API yang solid dan frontend yang responsif.",
     icon: Code,
   },
   {
     project: "API Integration",
-    date: "10 Apr 2024",
+    date: "10 Apr 2025",
     rating: "10/10",
     text: "Integrasi API full stack berjalan lancar dan dokumentasinya lengkap. Tim sangat membantu dalam proses implementasi.",
     icon: Database,
   },
   {
     project: "Web App",
-    date: "5 Mar 2024",
+    date: "5 Mar 2025",
     rating: "10/10",
     text: "Aplikasi web full stack yang sangat handal. Backend Node.js dan frontend React yang dibuat sangat clean dan maintainable!",
     icon: Code,
   },
   {
     project: "Sistem Inventory",
-    date: "20 Feb 2024",
+    date: "20 Feb 2025",
     rating: "10/10",
     text: "Sistem inventory full stack dengan database MySQL yang solid. Fitur lengkap dan performa cepat. Sangat puas!",
     icon: Database,
@@ -63,23 +63,26 @@ const services = [
 export default function Stats() {
   return (
     <section className="relative py-24 px-6 overflow-hidden">
-      {/* Stats-specific Background */}
+      {/* Stats-specific Background - More vibrant */}
       <div className="absolute inset-0 -z-10">
-        {/* Main glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-full blur-[120px] animate-[ambientPulse_10s_ease-in-out_infinite]" />
+        {/* Main glow - Enhanced */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-violet-600/15 via-purple-600/12 to-pink-600/15 rounded-full blur-[140px] animate-[ambientPulse_10s_ease-in-out_infinite]" />
         
-        {/* Secondary orbs */}
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple-600/10 rounded-full blur-[100px] animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-600/8 rounded-full blur-[100px] animate-float-slow" />
-        <div className="absolute top-1/3 right-1/3 w-56 h-56 bg-cyan-600/6 rounded-full blur-[100px] animate-float" style={{ animationDelay: '3s' }} />
+        {/* Secondary orbs - More vibrant */}
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-gradient-to-br from-violet-600/12 to-purple-600/8 rounded-full blur-[120px] animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-gradient-to-tl from-blue-600/12 to-cyan-600/10 rounded-full blur-[120px] animate-float-slow" />
+        <div className="absolute top-1/3 right-1/3 w-72 h-72 bg-pink-600/10 rounded-full blur-[100px] animate-float" style={{ animationDelay: '3s' }} />
+        {/* Extra accent */}
+        <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-cyan-600/8 rounded-full blur-[80px] animate-float" style={{ animationDelay: '5s' }} />
       </div>
 
-      {/* Mesh gradient overlay */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(236,72,153,0.06),transparent_60%)]" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_left,rgba(59,130,246,0.05),transparent_60%)]" />
+      {/* Mesh gradient overlay - Enhanced */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(236,72,153,0.08),transparent_60%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_left,rgba(59,130,246,0.08),transparent_60%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.05),transparent_50%)]" />
 
-      {/* Grid overlay */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(124,58,237,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      {/* Grid overlay - More subtle */}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(139,92,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}

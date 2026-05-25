@@ -3,28 +3,46 @@
 @import "tailwindcss";
 
 :root {
-  /* Primary Colors */
-  --purple-primary: #7C3AED;
-  --purple-secondary: #8B5CF6;
-  --purple-accent: #A855F7;
+  /* Primary Colors - More vibrant purple */
+  --purple-primary: #8B5CF6;
+  --purple-secondary: #A78BFA;
+  --purple-accent: #C4B5FD;
+  --purple-dark: #7C3AED;
+  --purple-glow: #6D28D9;
   
-  /* Secondary Colors */
+  /* Secondary Colors - Rich blue tones */
   --blue-primary: #3B82F6;
+  --blue-secondary: #60A5FA;
+  --blue-dark: #2563EB;
+  
+  /* Cyan/Teal Accents */
   --cyan-primary: #06B6D4;
+  --cyan-secondary: #22D3EE;
+  --cyan-dark: #0891B2;
   
-  /* Accent Colors */
+  /* Pink/Rose Accents */
   --pink-primary: #EC4899;
-  --pink-accent: #F472B6;
+  --pink-secondary: #F472B6;
+  --pink-dark: #DB2777;
   
-  /* Background Colors */
-  --bg-primary: #050816;
-  --bg-secondary: #0B1020;
-  --bg-tertiary: #111827;
+  /* Background Colors - Less harsh, more depth */
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #0F1629;
+  --bg-tertiary: #151E35;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-elevated: rgba(255, 255, 255, 0.06);
   
-  /* Text Colors */
-  --text-primary: #FFFFFF;
+  /* Text Colors - Better contrast */
+  --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-tertiary: #94A3B8;
+  --text-muted: #64748B;
+  
+  /* Gradient Presets */
+  --gradient-primary: linear-gradient(135deg, #8B5CF6, #3B82F6);
+  --gradient-hero: linear-gradient(135deg, #8B5CF6, #EC4899, #3B82F6);
+  --gradient-accent: linear-gradient(135deg, #06B6D4, #3B82F6);
+  --gradient-warm: linear-gradient(135deg, #EC4899, #F59E0B);
 }
 
 * {
@@ -39,6 +57,39 @@ body {
   position: relative;
 }
 
+/* Glassmorphism & Neon Glow */
+.glass-premium {
+  background: var(--bg-card);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 32px 0 rgba(139,92,246,0.12), 0 1.5px 8px 0 rgba(59,130,246,0.10);
+}
+
+.neon-glow {
+  box-shadow: 0 0 24px 4px var(--purple-glow), 0 0 8px 2px var(--blue-primary);
+}
+
+/* Premium Shadow */
+.shadow-premium {
+  box-shadow: 0 8px 32px 0 rgba(139,92,246,0.18), 0 1.5px 8px 0 rgba(59,130,246,0.12);
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8B5CF6 30%, #3B82F6 70%);
+  border-radius: 8px;
+}
+
+/* Smooth transitions for all */
+* {
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s;
+}
+
 /* Animated background orbs */
 .bg-orb {
   position: fixed;
@@ -46,7 +97,7 @@ body {
   filter: blur(100px);
   pointer-events: none;
   z-index: 0;
-  animation: orbFloat 20s ease-in-out infinite;
+  animation: orbFloat 12s ease-in-out infinite;
 }
 
 .bg-orb-1 {
@@ -67,7 +118,7 @@ body {
   top: 50%;
   right: -150px;
   animation-delay: -5s;
-  animation-duration: 25s;
+  animation-duration: 14s;
 }
 
 .bg-orb-3 {
@@ -78,7 +129,7 @@ body {
   bottom: -100px;
   left: 30%;
   animation-delay: -10s;
-  animation-duration: 22s;
+  animation-duration: 12s;
 }
 
 .bg-orb-4 {
@@ -89,7 +140,7 @@ body {
   top: 20%;
   left: 60%;
   animation-delay: -15s;
-  animation-duration: 28s;
+  animation-duration: 16s;
 }
 
 @keyframes orbFloat {
@@ -180,8 +231,21 @@ body {
   100% { transform: translateX(0); }
 }
 
-.float { animation: float 6s ease-in-out infinite; }
-.float-slow { animation: float-slow 8s ease-in-out infinite; }
+.float { animation: float 3.5s ease-in-out infinite; }
+.float-slow { animation: float-slow 5s ease-in-out infinite; }
+/* Percepat ambientPulse custom utility */
+.animate-[ambientPulse_10s_ease-in-out_infinite] {
+  animation: ambientPulse 6s ease-in-out infinite !important;
+}
+.animate-[ambientPulse_8s_ease-in-out_infinite] {
+  animation: ambientPulse 5s ease-in-out infinite !important;
+}
+.animate-[ambientPulse_12s_ease-in-out_infinite] {
+  animation: ambientPulse 7s ease-in-out infinite !important;
+}
+.animate-[ambientPulse_15s_ease-in-out_infinite] {
+  animation: ambientPulse 9s ease-in-out infinite !important;
+}
 .glow-pulse { animation: pulse-glow 3s ease-in-out infinite; }
 .animate-glow { animation: glow 3s ease-in-out infinite; }
 

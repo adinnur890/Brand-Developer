@@ -20,23 +20,25 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative py-28 lg:py-36 overflow-hidden">
-      {/* Hero-specific Background Orbs */}
+      {/* Hero-specific Background Orbs - More vibrant */}
       <div className="absolute inset-0 -z-10">
-        {/* Main spotlight glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-600/15 to-blue-600/15 rounded-full blur-[120px] animate-[ambientPulse_8s_ease-in-out_infinite]" />
+        {/* Main spotlight glow - Enhanced */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-gradient-to-r from-violet-600/20 via-purple-600/15 to-blue-600/20 rounded-full blur-[140px] animate-[ambientPulse_8s_ease-in-out_infinite]" />
         
-        {/* Secondary orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/12 rounded-full blur-[100px] animate-float" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] animate-float-slow" />
-        <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-pink-600/8 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-1/3 left-1/3 w-72 h-72 bg-cyan-600/8 rounded-full blur-[100px] animate-float-slow" style={{ animationDelay: '3s' }} />
+        {/* Secondary orbs - More vibrant */}
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-violet-600/15 to-purple-600/10 rounded-full blur-[120px] animate-float" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-to-tl from-blue-600/15 to-cyan-600/10 rounded-full blur-[120px] animate-float-slow" />
+        <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-pink-600/12 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-1/3 left-1/3 w-96 h-96 bg-cyan-600/10 rounded-full blur-[100px] animate-float-slow" style={{ animationDelay: '3s' }} />
+        {/* Extra accent orb */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-purple-500/8 to-transparent rounded-full blur-[150px] animate-[ambientPulse_15s_ease-in-out_infinite]" style={{ animationDelay: '-3s' }} />
       </div>
 
-      {/* Mesh gradient overlay */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.08),transparent_70%)]" />
+      {/* Mesh gradient overlay - Enhanced */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.1),rgba(59,130,246,0.05),transparent_70%)]" />
 
-      {/* Grid overlay */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(124,58,237,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      {/* Grid overlay - More subtle */}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(139,92,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.05)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       {/* Floating particles */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
