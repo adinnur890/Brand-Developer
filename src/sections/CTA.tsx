@@ -1,13 +1,29 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Zap, Shield, Users, X, MessageCircle, Mail, Send, User, Phone } from "lucide-react";
+import { ArrowRight, Zap, Users, X, MessageCircle, Mail, User, Phone, CheckCircle, Clock } from "lucide-react";
 
 const adminWhatsApp = "6283879204375";
 
 export default function CTA() {
   const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [form, setForm] = useState({ name: "", whatsapp: "", sendEmail: false });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message = `Halo, saya ingin konsultasi gratis%0A%0ANama: ${form.name}%0AWA: ${form.whatsapp}`;
+    
+    if (form.sendEmail) {
+      // Send via email (open mail client)
+      window.location.href = `mailto:admin@butuhsolusi.com?subject=Konsultasi Gratis - ${form.name}&body=Nama: ${form.name}%0D%0AWA: ${form.whatsapp}`;
+      setShowSuccess(true);
+    } else {
+      // Open WhatsApp directly
+      window.open(`https://wa.me/${adminWhatsApp}?text=${message}`, "_blank");
+      setShowModal(false);
+    }
+  };
 
   return (
     <section className="py-24 px-6 relative">
@@ -61,7 +77,7 @@ export default function CTA() {
 
       {/* Consultation Modal */}
       <AnimatePresence>
-        {showModal && (
+        {showModal && !showSuccess && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -91,21 +107,7 @@ export default function CTA() {
               </div>
 
               {/* Form */}
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const message = `Halo, saya ingin konsultasi gratis%0A%0ANama: ${form.name}%0AWA: ${form.whatsapp}`;
-                  if (form.sendEmail) {
-                    // Send via email (open mail client)
-                    window.location.href = `mailto:admin@butuhsolusi.com?subject=Konsultasi Gratis - ${form.name}&body=Nama: ${form.name}%0D%0AWA: ${form.whatsapp}`;
-                  } else {
-                    // Open WhatsApp
-                    window.open(`https://wa.me/${adminWhatsApp}?text=${message}`, "_blank");
-                  }
-                  setShowModal(false);
-                }}
-                className="space-y-4"
-              >
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-semibold text-white mb-2">Nama Lengkap</label>
                   <div className="relative">
@@ -175,6 +177,83 @@ export default function CTA() {
                   </button>
                 </div>
               </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowSuccess(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-md bg-[#0a0a0a] border border-white/10 rounded-2xl p-8 text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Success Icon */}
+              <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="text-green-400" size={32} />
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-2">Pesanan Berhasil Dikirim!</h3>
+              <p className="text-sm text-zinc-400 mb-6">
+                Terima kasih! Admin akan menghubungi Anda segera melalui WhatsApp untuk konfirmasi pesanan layanan IT.
+              </p>
+
+              {/* WhatsApp Button */}
+              <a
+                href={`https://wa.me/${adminWhatsApp}?text=Halo, saya sudah mengirim email konsultasi. Nama: ${form.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-green-600 text-white font-semibold text-sm hover:bg-green-700 transition-colors mb-4"
+              >
+                <MessageCircle size={18} />
+                Chat WhatsApp
+              </a>
+
+              {/* Response Time */}
+              <div className="flex items-center justify-center gap-2 text-xs text-zinc-500 mb-6">
+                <Clock size={14} />
+                <span>Respon dalam 5-10 menit</span>
+              </div>
+
+              {/* Free Consultation Info */}
+              <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 mb-6">
+                <p className="text-xs text-purple-400">
+                  💡 <strong>Konsultasi Gratis</strong> - Tanpa biaya apapun
+                </p>
+              </div>
+
+              {/* Chat Admin Button */}
+              <a
+                href={`https://wa.me/${adminWhatsApp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+              >
+                <MessageCircle size={18} />
+                Chat Admin Sekarang
+              </a>
+
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setShowSuccess(false);
+                  setForm({ name: "", whatsapp: "", sendEmail: false });
+                }}
+                className="mt-4 text-zinc-500 hover:text-white transition-colors text-sm"
+              >
+                Tutup
+              </button>
             </motion.div>
           </motion.div>
         )}
