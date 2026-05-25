@@ -9,7 +9,7 @@ const adminWhatsApp = "6283879204375";
 const faqItems = [
   {
     question: "Berapa lama proyek dikerjakan?",
-    answer: "Durasi pengerjaan bervariasi tergantung kompleksitas proyek. Untuk website sederhana 3-7 hari, aplikasi mobile 1-3 minggu, dan sistem custom 2-4 minggu. Timeline detail akan dibahas saat konsultasi.",
+    answer: "Durasi pengerjaan bervariasi tergantung kompleksitas proyek. Untuk website sederhana 3-7 hari, website full stack dengan backend 1-2 minggu, dan sistem custom 2-4 minggu. Timeline detail akan dibahas saat konsultasi.",
   },
   {
     question: "Apakah bisa di-refund?",

@@ -154,6 +154,17 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+
+        {/* View All Products Button */}
+        <div className="text-center mt-12">
+          <a
+            href="/marketplace"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-semibold text-sm hover:bg-white/10 hover:border-purple-500/30 transition-all duration-300"
+          >
+            Lihat Semua Produk Marketplace
+            <ArrowRight size={16} />
+          </a>
+        </div>
       </div>
 
       {/* Product Detail Modal */}
