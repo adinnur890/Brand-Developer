@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, ArrowLeft, Star, ShoppingCart, ChevronDown, Eye, MessageCircle } from "lucide-react";
-import Image from "next/image";
+import { Search, ArrowLeft, Star, ShoppingCart, ChevronDown, Eye } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 
@@ -176,22 +175,52 @@ export default function MarketplacePage() {
       </header>
 
       {/* Search & Filters */}
-      <section className="px-6 py-8">
+      <section className="px-6 py-6">
         <div className="max-w-7xl mx-auto">
-          <p className="text-zinc-400 mb-8">
-            Temukan template, aplikasi, dan solusi IT siap pakai
-          </p>
-
-          {/* Search Bar */}
-          <div className="relative max-w-xl mb-8">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={20} />
-            <input
-              type="text"
-              placeholder="Cari produk, tag, atau deskripsi..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 transition-colors text-base"
-            />
+          {/* Search Bar with Sort */}
+          <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center mb-6">
+            <div className="relative flex-1">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={20} />
+              <input
+                type="text"
+                placeholder="Cari produk, tag, atau deskripsi..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 transition-colors text-base"
+              />
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <button
+                  onClick={() => setShowSortDropdown(!showSortDropdown)}
+                  className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm hover:bg-white/10 transition-colors whitespace-nowrap"
+                >
+                  <span className="text-zinc-400">Urutkan:</span> <span className="text-purple-400 font-semibold">{sortBy}</span>
+                  <ChevronDown size={16} className={`transition-transform ${showSortDropdown ? "rotate-180" : ""}`} />
+                </button>
+                {showSortDropdown && (
+                  <div className="absolute right-0 top-full mt-2 w-48 rounded-xl bg-[#0a0a0a] border border-white/10 shadow-xl z-10 overflow-hidden">
+                    {sortOptions.map((option) => (
+                      <button
+                        key={option}
+                        onClick={() => {
+                          setSortBy(option);
+                          setShowSortDropdown(false);
+                        }}
+                        className={`w-full px-4 py-3 text-left text-sm hover:bg-white/5 transition-colors ${
+                          sortBy === option ? "text-purple-400 bg-purple-500/10" : "text-zinc-400"
+                        }`}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="text-zinc-400 text-sm whitespace-nowrap">
+                Menampilkan <span className="text-white font-semibold">{filteredProducts.length}</span> dari <span className="text-white font-semibold">{products.length}</span> produk
+              </div>
+            </div>
           </div>
 
           {/* Categories */}
@@ -214,131 +243,73 @@ export default function MarketplacePage() {
         </div>
       </section>
 
-      {/* Sort & Results */}
-      <section className="px-6 pb-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-            <div className="text-zinc-400 text-sm">
-              Menampilkan <span className="text-white font-semibold">{filteredProducts.length}</span> dari <span className="text-white font-semibold">{products.length}</span> produk
-            </div>
-            <div className="relative">
-              <button
-                onClick={() => setShowSortDropdown(!showSortDropdown)}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm hover:bg-white/10 transition-colors"
-              >
-                Urutkan: <span className="text-purple-400 font-semibold">{sortBy}</span>
-                <ChevronDown size={16} className={`transition-transform ${showSortDropdown ? "rotate-180" : ""}`} />
-              </button>
-              {showSortDropdown && (
-                <div className="absolute right-0 top-full mt-2 w-48 rounded-xl bg-[#0a0a0a] border border-white/10 shadow-xl z-10 overflow-hidden">
-                  {sortOptions.map((option) => (
-                    <button
-                      key={option}
-                      onClick={() => {
-                        setSortBy(option);
-                        setShowSortDropdown(false);
-                      }}
-                      className={`w-full px-4 py-3 text-left text-sm hover:bg-white/5 transition-colors ${
-                        sortBy === option ? "text-purple-400 bg-purple-500/10" : "text-zinc-400"
-                      }`}
-                    >
-                      {option}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Products Grid */}
       <section className="px-6 pb-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="glass rounded-2xl border border-white/10 overflow-hidden hover:border-purple-500/30 transition-all duration-300 group"
+                className="glass rounded-xl border border-white/5 p-5 hover:border-purple-500/20 transition-all duration-300"
               >
-                {/* Product Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
-                </div>
-
-                {/* Product Content */}
-                <div className="p-5">
-                  {/* Author */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center text-[10px] text-white font-bold">
+                {/* Header: Author + Title */}
+                <div className="mb-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center text-[10px] text-white font-bold flex-shrink-0">
                       {product.author.charAt(0)}
                     </div>
                     <span className="text-xs text-zinc-500">{product.author}</span>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-base font-semibold text-white mb-2 line-clamp-2 group-hover:text-purple-300 transition-colors">
+                  <h3 className="text-sm font-semibold text-white line-clamp-2 hover:text-purple-300 transition-colors">
                     {product.title}
                   </h3>
+                </div>
 
-                  {/* Description */}
-                  <p className="text-xs text-zinc-500 mb-4 line-clamp-2">{product.description}</p>
+                {/* Description */}
+                <p className="text-xs text-zinc-500 mb-3 line-clamp-2">{product.description}</p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {product.tags.slice(0, 5).map((tag, i) => (
-                      <span
-                        key={i}
-                        className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {product.tags.length > 5 && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-zinc-500">
-                        +{product.tags.length - 5}
-                      </span>
-                    )}
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1 mb-4">
+                  {product.tags.slice(0, 5).map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  {product.tags.length > 5 && (
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-zinc-500">
+                      +{product.tags.length - 5}
+                    </span>
+                  )}
+                </div>
+
+                {/* Stats */}
+                <div className="flex items-center gap-4 text-xs text-zinc-500 mb-4">
+                  <div className="flex items-center gap-1">
+                    <Star className="text-yellow-400 fill-yellow-400" size={12} />
+                    <span className="text-white font-semibold">{product.rating}</span>
+                    <span className="text-zinc-600">({product.reviews})</span>
                   </div>
-
-                  {/* Stats Row */}
-                  <div className="flex items-center justify-between mb-4 text-xs text-zinc-500">
-                    <div className="flex items-center gap-1">
-                      <Star className="text-yellow-400 fill-yellow-400" size={12} />
-                      <span className="text-white font-semibold">{product.rating}</span>
-                      <span className="text-zinc-600">({product.reviews})</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Eye size={12} />
-                      <span>{product.views}</span>
-                    </div>
+                  <div className="flex items-center gap-1">
+                    <Eye size={12} />
+                    <span>{product.views}</span>
                   </div>
+                </div>
 
-                  {/* Price & Buy */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-lg font-black text-white">{formatRupiah(product.price)}</div>
-                      <div className="text-xs text-zinc-500 line-through">{formatRupiah(product.originalPrice)}</div>
-                    </div>
-                    <div className="flex gap-2">
-                      <button className="p-2 rounded-lg bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors">
-                        <MessageCircle size={16} />
-                      </button>
-                      <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity">
-                        <ShoppingCart size={14} />
-                        Beli
-                      </button>
-                    </div>
+                {/* Footer: Price + Buy */}
+                <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                  <div>
+                    <div className="text-base font-black text-white">{formatRupiah(product.price)}</div>
+                    <div className="text-xs text-zinc-500 line-through">{formatRupiah(product.originalPrice)}</div>
                   </div>
+                  <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-semibold hover:opacity-90 transition-opacity">
+                    Beli
+                  </button>
                 </div>
               </motion.div>
             ))}
