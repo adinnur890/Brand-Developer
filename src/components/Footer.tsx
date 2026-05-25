@@ -122,19 +122,9 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-3">
-            <div className="relative w-8 h-8">
-              <Image
-                src="/brand-developer.svg"
-                alt="Brand Developer"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <p className="text-zinc-500 text-sm">
-              © {new Date().getFullYear()} Brand Developer. All rights reserved.
-            </p>
-          </div>
+          <p className="text-zinc-500 text-sm">
+            © {new Date().getFullYear()} Brand Developer. All rights reserved.
+          </p>
           <div className="flex gap-6">
             <a href="#" className="text-zinc-500 hover:text-white transition-colors text-sm">
               Privacy Policy
