@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Filter, Star, ShoppingCart, ChevronDown, Eye, MessageCircle } from "lucide-react";
+import { Search, ArrowLeft, Star, ShoppingCart, ChevronDown, Eye, MessageCircle } from "lucide-react";
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 
 const products = [
@@ -159,23 +159,29 @@ export default function MarketplacePage() {
 
   return (
     <main className="min-h-screen bg-[#050505]">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="pt-32 pb-12 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Marketplace <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Produk Digital</span>
-          </h1>
-          <p className="text-zinc-400 max-w-2xl mx-auto">
-            Temukan template, aplikasi, dan solusi IT siap pakai untuk mempercepat project Anda
-          </p>
+      {/* Header with Back Button */}
+      <header className="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-xl border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+            >
+              <ArrowLeft size={20} />
+              <span className="font-medium">Kembali</span>
+            </Link>
+            <h1 className="text-xl font-bold text-white">Marketplace</h1>
+          </div>
         </div>
-      </section>
+      </header>
 
       {/* Search & Filters */}
-      <section className="px-6 mb-8">
+      <section className="px-6 py-8">
         <div className="max-w-7xl mx-auto">
+          <p className="text-zinc-400 text-center mb-8">
+            Temukan template, aplikasi, dan solusi IT siap pakai
+          </p>
+
           {/* Search Bar */}
           <div className="relative max-w-2xl mx-auto mb-8">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={20} />
@@ -189,7 +195,7 @@ export default function MarketplacePage() {
           </div>
 
           {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
+          <div className="flex flex-wrap justify-center gap-2">
             {categories.map((cat, index) => (
               <button
                 key={index}
@@ -205,8 +211,12 @@ export default function MarketplacePage() {
               </button>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Sort & Results */}
+      {/* Sort & Results */}
+      <section className="px-6 pb-4">
+        <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
             <div className="text-zinc-400 text-sm">
               Menampilkan <span className="text-white font-semibold">{filteredProducts.length}</span> dari <span className="text-white font-semibold">{products.length}</span> produk
