@@ -1,8 +1,14 @@
 "use client";
-import { motion } from "framer-motion";
-import { ArrowRight, Zap, Shield, Users } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Zap, Shield, Users, X, MessageCircle, Mail, Send, User, Phone } from "lucide-react";
+
+const adminWhatsApp = "6283879204375";
 
 export default function CTA() {
+  const [showModal, setShowModal] = useState(false);
+  const [form, setForm] = useState({ name: "", whatsapp: "", sendEmail: false });
+
   return (
     <section className="py-24 px-6 relative">
       <div className="max-w-5xl mx-auto">
@@ -42,18 +48,137 @@ export default function CTA() {
             </div>
 
             {/* CTA Button */}
-            <a
-              href="https://wa.me/6283879204375?text=Halo%2C%20saya%20sudah%20yakin%20dan%20siap%20untuk%20memulai%20proyek!"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setShowModal(true)}
               className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-white text-purple-600 font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
-              Pesan Sekarang
+              Konsultasi Gratis
               <ArrowRight size={20} />
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>
+
+      {/* Consultation Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-md bg-[#0a0a0a] border border-white/10 rounded-2xl p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Header */}
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-bold text-white mb-2">Konsultasi Gratis</h3>
+                <p className="text-sm text-zinc-400">Hubungi kami via WhatsApp</p>
+              </div>
+
+              {/* Form */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const message = `Halo, saya ingin konsultasi gratis%0A%0ANama: ${form.name}%0AWA: ${form.whatsapp}`;
+                  if (form.sendEmail) {
+                    // Send via email (open mail client)
+                    window.location.href = `mailto:admin@butuhsolusi.com?subject=Konsultasi Gratis - ${form.name}&body=Nama: ${form.name}%0D%0AWA: ${form.whatsapp}`;
+                  } else {
+                    // Open WhatsApp
+                    window.open(`https://wa.me/${adminWhatsApp}?text=${message}`, "_blank");
+                  }
+                  setShowModal(false);
+                }}
+                className="space-y-4"
+              >
+                <div>
+                  <label className="block text-xs font-semibold text-white mb-2">Nama Lengkap</label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={16} />
+                    <input
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      placeholder="Masukkan nama lengkap Anda"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 transition-colors text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-white mb-2">Nomor WhatsApp Anda</label>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={16} />
+                    <input
+                      type="tel"
+                      required
+                      value={form.whatsapp}
+                      onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
+                      placeholder="08123456789 atau +6281234567890"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 transition-colors text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="sendEmail"
+                    checked={form.sendEmail}
+                    onChange={(e) => setForm({ ...form, sendEmail: e.target.checked })}
+                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-purple-600 focus:ring-purple-500"
+                  />
+                  <label htmlFor="sendEmail" className="text-xs text-zinc-400">
+                    Kirim Email: Mengirim data konsultasi via email
+                  </label>
+                </div>
+
+                <div className="flex gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                    className="flex-1 py-3 rounded-xl bg-white/5 border border-white/10 text-white font-semibold text-sm hover:bg-white/10 transition-colors"
+                  >
+                    Batal
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                  >
+                    {form.sendEmail ? (
+                      <>
+                        <Mail size={16} />
+                        Kirim Email
+                      </>
+                    ) : (
+                      <>
+                        <MessageCircle size={16} />
+                        Buka WA
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
