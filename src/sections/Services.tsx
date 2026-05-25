@@ -1,74 +1,41 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight, Star, Check, Zap, Shield, Users } from "lucide-react";
+import { ArrowRight, Star, Check, Zap } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 
 const services = [
   {
     badge: "Terpopuler",
-    title: "ERD, UML, Use Case, Activity, Sequence Diagram, UserFlow",
-    projects: "261 Project",
-    clients: "Klien Puas",
-    description: "Dokumentasi sistem: ERD, Use Case, Activity, dan Sequence Diagram",
-    price: 59000,
-    priceLabel: "/ project",
-    minPrice: "Harga Minimal",
-    benefits: ["ERD", "Use Case", "Activity Diagram", "Sequence Diagram", "UserFlow"],
-  },
-  {
-    badge: "Terpopuler",
-    title: "Mobile App",
-    projects: "43 Project",
-    clients: "Klien Puas",
-    description: "Pengembangan aplikasi Android/iOS yang user-friendly dan performa tinggi",
-    price: 99000,
-    priceLabel: "/ project",
-    minPrice: "Harga Minimal",
-    benefits: ["Source Code", "ERD", "Use Case", "Activity Diagram", "Sequence Diagram"],
-  },
-  {
-    badge: "Terpopuler",
-    title: "Website",
+    title: "Website Full Stack",
     projects: "89 Project",
     clients: "Klien Puas",
-    description: "Website profesional, responsif, dan SEO-friendly untuk website Anda",
+    description: "Website profesional, responsif, dan SEO-friendly dengan backend lengkap",
     price: 99000,
     priceLabel: "/ project",
     minPrice: "Harga Minimal",
-    benefits: ["Source Code", "ERD", "Use Case", "Activity Diagram", "Sequence Diagram"],
+    benefits: ["Source Code", "ERD", "Use Case", "Activity Diagram", "Sequence Diagram", "Database Design", "API Development"],
   },
   {
     badge: "Terpopuler",
-    title: "Data Science",
-    projects: "73 Project",
-    clients: "Klien Puas",
-    description: "Machine Learning, Deep Learning, Analisis data, visualisasi, dan Olah Data untuk insight bisnis",
-    price: 99000,
-    priceLabel: "/ project",
-    minPrice: "Harga Minimal",
-    benefits: ["Machine Learning", "Deep Learning", "Olah Data"],
-  },
-  {
-    badge: "Terpopuler",
-    title: "UI/UX",
+    title: "UI/UX Design",
     projects: "33 Project",
     clients: "Klien Puas",
     description: "Desain antarmuka dan pengalaman pengguna yang modern serta konsisten",
     price: 99000,
     priceLabel: "/ project",
     minPrice: "Harga Minimal",
-    benefits: ["Wireframe", "Prototype", "ERD", "Use Case", "Activity Diagram", "Sequence Diagram", "UserFlow"],
+    benefits: ["Wireframe", "Prototype", "Design System", "Auto Layout", "Responsive Design", "User Flow"],
   },
   {
     badge: "Terpopuler",
-    title: "PPT",
-    projects: "27 Project",
+    title: "ERD & Dokumentasi Sistem",
+    projects: "261 Project",
     clients: "Klien Puas",
-    description: "Presentasi profesional dengan desain modern, animasi halus, dan infografis menarik",
-    price: 89000,
+    description: "Dokumentasi sistem lengkap: ERD, Use Case, Activity, dan Sequence Diagram",
+    price: 59000,
     priceLabel: "/ project",
     minPrice: "Harga Minimal",
-    benefits: ["Template Custom", "Animasi", "Infografis", "Brand Guidelines"],
+    benefits: ["ERD", "Use Case Diagram", "Activity Diagram", "Sequence Diagram", "User Flow", "Documentation"],
   },
 ];
 
@@ -89,8 +56,8 @@ export default function Services() {
         <SectionHeading
           badge="Layanan"
           titleFirst="Layanan"
-          titleAccent="Jasa IT Profesional"
-          description="Solusi teknologi terdepan untuk mengembangkan bisnis Anda dengan tim ahli berpengalaman dan track record terpercaya"
+          titleAccent="Full Stack Developer"
+          description="Solusi teknologi terdepan untuk mengembangkan bisnis Anda dengan fokus pada Website dan UI/UX Design yang modern dan profesional"
         />
 
         {/* Trust Badges */}
@@ -110,7 +77,7 @@ export default function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={index}
