@@ -13,11 +13,11 @@ const products = [
     reviews: 340,
     views: 1800,
     author: "UI/UX Expert",
+    category: "UI/UX",
     description: "UI kit portofolio dengan design system, auto layout, dan Prototype",
     tags: ["Figma", "Design System", "Auto Layout", "Landing portofolio", "Komponen reusable", "Prototype"],
     price: 59000,
     originalPrice: 100000,
-    image: "/Nexora-ai.png",
   },
   {
     id: 2,
@@ -26,110 +26,43 @@ const products = [
     reviews: 340,
     views: 1800,
     author: "UI/UX Expert",
+    category: "UI/UX",
     description: "UI kit landing page dengan design system, auto layout dan Prototype",
     tags: ["Figma", "Design System", "Auto Layout", "Landing portofolio", "Komponen reusable", "Prototype"],
     price: 59000,
     originalPrice: 100000,
-    image: "/Nexora-ai.png",
   },
   {
     id: 3,
-    title: "Machine Learning Dasar Klasifikasi Buah",
-    rating: 4.9,
-    reviews: 120,
-    views: 860,
-    author: "Data Scientist",
-    description: "Pipeline klasifikasi buah dengan preprocessing, evaluasi akurasi, dan confusion matrix",
-    tags: ["Python", "Scikit-learn", "Pandas", "Preprocessing data", "Klasifikasi & evaluasi", "Confusion matrix"],
-    price: 99000,
-    originalPrice: 200000,
-    image: "/tododin-preview.jpg",
-  },
-  {
-    id: 4,
-    title: "Machine Learning Dasar Klasifikasi Penyakit Kulit Kucing",
-    rating: 4.9,
-    reviews: 120,
-    views: 860,
-    author: "Data Scientist",
-    description: "Pipeline klasifikasi penyakit kulit kucing dengan preprocessing, evaluasi akurasi, dan confusion matrix",
-    tags: ["Python", "Scikit-learn", "Pandas", "Preprocessing data", "Klasifikasi & evaluasi", "Confusion matrix"],
-    price: 120000,
-    originalPrice: 200000,
-    image: "/tododin-preview.jpg",
-  },
-  {
-    id: 5,
     title: "Website Sederhana HTML, CSS, dan JavaScript dasar",
     rating: 4.9,
     reviews: 75,
     views: 540,
     author: "Web Developer",
+    category: "Website",
     description: "Template website sederhana dengan HTML, CSS, dan JavaScript dasar",
     tags: ["HTML", "CSS", "JavaScript", "Struktur HTML", "Styling CSS", "Interaksi JS"],
     price: 99000,
     originalPrice: 150000,
-    image: "/Nexora-ai.png",
   },
   {
-    id: 6,
+    id: 4,
     title: "Website Sederhana HTML, CSS, dan PHP dasar",
     rating: 4.9,
     reviews: 75,
     views: 540,
     author: "Web Developer",
+    category: "Website",
     description: "Template website sederhana dengan HTML, CSS, dan PHP dasar",
     tags: ["HTML", "CSS", "PHP", "Struktur HTML", "Styling CSS", "Interaksi PHP"],
     price: 99000,
     originalPrice: 150000,
-    image: "/Nexora-ai.png",
-  },
-  {
-    id: 7,
-    title: "Aplikasi Login + CRUD (Flutter + MySQL)",
-    rating: 4.9,
-    reviews: 64,
-    views: 520,
-    author: "Mobile Developer",
-    description: "Aplikasi Flutter dengan autentikasi dan CRUD terhubung ke MySQL via API",
-    tags: ["Flutter", "MySQL", "REST API", "Auth", "CRUD", "Login & Register", "CRUD data", "API MySQL (PHP)"],
-    price: 199000,
-    originalPrice: 500000,
-    image: "/tododin-preview.jpg",
-  },
-  {
-    id: 8,
-    title: "Aplikasi Login + CRUD (ReactNative + MySQL)",
-    rating: 4.9,
-    reviews: 64,
-    views: 520,
-    author: "Mobile Developer",
-    description: "Aplikasi ReactNative dengan autentikasi dan CRUD terhubung ke MySQL via API",
-    tags: ["ReactNative", "MySQL", "REST API", "Auth", "CRUD", "Login & Register", "CRUD data", "API MySQL (PHP)"],
-    price: 199000,
-    originalPrice: 500000,
-    image: "/tododin-preview.jpg",
-  },
-  {
-    id: 9,
-    title: "Aplikasi Kasir POS Desktop (NEXT.js + Electron)",
-    rating: 4.9,
-    reviews: 8,
-    views: 10,
-    author: "Full Stack Developer",
-    description: "Aplikasi kasir desktop berbasis Next.js + Electron dengan kelola produk/kategori, penjualan, cetak struk, dan laporan.",
-    tags: ["Next.js", "Electron", "TypeScript", "Prisma", "React Query", "Kelola produk & kategori", "Penjualan POS (diskon & kembalian)", "Cetak struk thermal", "Laporan pemasukan & pengeluaran"],
-    price: 250000,
-    originalPrice: 350000,
-    image: "/Nexora-ai.png",
   },
 ];
 
 const categories = [
-  { name: "Semua", count: 9 },
-  { name: "Mobile App", count: 2 },
-  { name: "Website", count: 3 },
-  { name: "Datasience", count: 2 },
+  { name: "Semua", count: 4 },
+  { name: "Website", count: 2 },
   { name: "UI/UX", count: 2 },
 ];
 
@@ -150,10 +83,11 @@ export default function MarketplacePage() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
 
   const filteredProducts = products.filter((product) => {
+    const matchesCategory = activeCategory === "Semua" || product.category === activeCategory;
     const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesSearch;
+    return matchesCategory && matchesSearch;
   });
 
   return (
