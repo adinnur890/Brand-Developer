@@ -146,7 +146,7 @@ const categories = [
 
 const sortOptions = ["Terpopuler", "Harga Terendah", "Harga Tertinggi", "Terbaru"];
 
-const adminWhatsApp = "6287817649178";
+const adminWhatsApp = "6283879204375";
 
 const formatRupiah = (price: number) => {
   return new Intl.NumberFormat("id-ID", {
