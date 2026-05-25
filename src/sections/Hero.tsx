@@ -137,8 +137,8 @@ export default function Hero() {
             { value: "24/7", label: "Support" },
             { value: "100%", label: "Kepuasan" },
           ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-black bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+            <div key={index} className="text-center glass rounded-xl p-4 border border-white/5">
+              <div className="text-3xl md:text-4xl font-black text-white">
                 {stat.value}
               </div>
               <div className="text-xs text-zinc-500 mt-2 font-medium uppercase tracking-wider">
