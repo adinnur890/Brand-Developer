@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
-import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, ArrowUp } from "lucide-react";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer id="contact" className="border-t border-white/10 bg-[#050505]">
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -125,6 +130,13 @@ export default function Footer() {
           <p className="text-zinc-500 text-xs">
             © {new Date().getFullYear()} Brand Developer. All rights reserved. | Dibuat dengan ❤️ Brand Developer
           </p>
+          <button
+            onClick={scrollToTop}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:border-purple-500/30 transition-all text-xs"
+          >
+            <ArrowUp size={14} />
+            Kembali ke Atas
+          </button>
         </div>
       </div>
     </footer>
