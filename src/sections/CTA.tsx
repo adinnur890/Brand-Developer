@@ -29,7 +29,7 @@ export default function CTA() {
             <div className="flex flex-wrap justify-center gap-6 mb-10">
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm">
                 <Zap size={16} />
-                <span>671+ Project</span>
+                <span>400+ Project</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm">
                 <Zap size={16} />

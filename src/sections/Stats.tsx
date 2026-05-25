@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { CheckCircle, Zap, Users, Award } from "lucide-react";
 
 const stats = [
-  { icon: CheckCircle, value: "671+", label: "Proyek Selesai", color: "text-green-400" },
+  { icon: CheckCircle, value: "400+", label: "Proyek Selesai", color: "text-green-400" },
   { icon: Zap, value: "10+", label: "Program Siap Pakai", color: "text-yellow-400" },
   { icon: Users, value: "Cepat", label: "Response", color: "text-blue-400" },
   { icon: Award, value: "Tim", label: "Berpengalaman", color: "text-purple-400" },

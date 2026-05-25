@@ -72,7 +72,7 @@ export default function Services() {
           </div>
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 text-purple-400 text-sm">
             <Zap size={14} />
-            <span>671+ Project Selesai</span>
+            <span>400+ Project Selesai</span>
           </div>
         </div>
 
