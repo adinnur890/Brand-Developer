@@ -189,9 +189,27 @@ export default function MarketplacePage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#050505]">
+    <main className="min-h-screen bg-[#050816] relative overflow-hidden">
+      {/* Marketplace-specific Background */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        {/* Main glow */}
+        <div className="absolute top-1/4 left-1/4 w-[700px] h-[700px] bg-gradient-to-r from-blue-600/12 to-cyan-600/12 rounded-full blur-[120px] animate-[ambientPulse_15s_ease-in-out_infinite]" />
+        
+        {/* Secondary orbs */}
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-blue-600/10 rounded-full blur-[100px] animate-float" />
+        <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-cyan-600/8 rounded-full blur-[100px] animate-float-slow" />
+        <div className="absolute top-1/2 right-1/3 w-56 h-56 bg-purple-600/6 rounded-full blur-[100px] animate-float" style={{ animationDelay: '3s' }} />
+      </div>
+
+      {/* Mesh gradient overlay */}
+      <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(59,130,246,0.06),transparent_60%)] pointer-events-none" />
+      <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_left,rgba(6,182,212,0.05),transparent_60%)] pointer-events-none" />
+
+      {/* Grid overlay */}
+      <div className="fixed inset-0 -z-10 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+
       {/* Header with Back Button */}
-      <header className="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-xl border-b border-white/10">
+      <header className="sticky top-0 z-50 bg-[#050816]/95 backdrop-blur-xl border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center gap-4">
             <Link
