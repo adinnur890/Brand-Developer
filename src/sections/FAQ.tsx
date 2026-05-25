@@ -41,7 +41,7 @@ const faqItems = [
   },
   {
     question: "Teknologi apa yang biasa digunakan?",
-    answer: "Kami menggunakan teknologi modern: React/Next.js untuk frontend, Node.js/Laravel untuk backend, MySQL/PostgreSQL/MongoDB untuk database, dan Flutter/React Native untuk mobile apps.",
+    answer: "Kami menggunakan teknologi modern: React/Next.js untuk frontend, Node.js/Laravel untuk backend, MySQL/PostgreSQL/MongoDB untuk database. Fokus kami adalah pengembangan website full stack yang handal dan scalable.",
   },
   {
     question: "Bagaimana cara memulai?",

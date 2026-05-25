@@ -20,7 +20,7 @@ export default function Footer() {
               <span className="text-white font-bold text-xl">Brand Developer</span>
             </div>
             <p className="text-sm text-zinc-500 mb-6">
-              Jasa IT Profesional untuk Mahasiswa. Bantu tugas, project, dan deadline IT dengan cepat, rapi, dan terpercaya.
+              Jasa IT Profesional untuk Bisnis. Bantu bangun website modern, cepat, dan profesional.
             </p>
             <div className="flex gap-3">
               <a
@@ -40,12 +40,12 @@ export default function Footer() {
                 IG
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.tiktok.com/@din_development?is_from_webapp=1&sender_device=pc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
               >
-                LI
+                TT
               </a>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#marketplace" className="text-zinc-500 hover:text-white transition-colors text-sm">
+                <a href="/marketplace" className="text-zinc-500 hover:text-white transition-colors text-sm">
                   Marketplace
                 </a>
               </li>
@@ -93,16 +93,6 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#services" className="text-zinc-500 hover:text-white transition-colors text-sm">
-                  Mobile App
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-zinc-500 hover:text-white transition-colors text-sm">
-                  Data Science
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-zinc-500 hover:text-white transition-colors text-sm">
                   UI/UX Design
                 </a>
               </li>
@@ -121,13 +111,13 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="text-purple-400 flex-shrink-0 mt-0.5" size={16} />
                 <a href="https://wa.me/6283879204375" className="text-zinc-500 hover:text-white transition-colors text-sm">
-                  +62 838-7920-4375
+                  +62 838-792-04375 (WhatsApp)
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="text-purple-400 flex-shrink-0 mt-0.5" size={16} />
-                <a href="mailto:hello@branddeveloper.com" className="text-zinc-500 hover:text-white transition-colors text-sm">
-                  hello@branddeveloper.com
+                <a href="mailto:admin@butuhsolusi.com" className="text-zinc-500 hover:text-white transition-colors text-sm">
+                  admin@butuhsolusi.com
                 </a>
               </li>
               <li className="flex items-start gap-3">

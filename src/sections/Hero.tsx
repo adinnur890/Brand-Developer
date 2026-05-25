@@ -106,20 +106,18 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
         >
           <a
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="group px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 font-semibold text-white text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center gap-2"
           >
             <Code2 size={18} />
-            Konsultasi Gratis
+            Pesan Jasa
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a
-            href="#portfolio"
+            href="/marketplace"
             className="px-8 py-4 rounded-full bg-white/5 font-semibold text-white text-sm hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-sm"
           >
-            Lihat Portfolio
+            Program Siap Pakai
           </a>
         </motion.div>
 
