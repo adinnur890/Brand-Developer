@@ -44,7 +44,7 @@ export default function CTA() {
               Gimana, sudah yakin?
             </h2>
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Yuk pesan layanan kami sekarang juga dan jadikan kami sebagai mitra terbaikmu dalam menghadirkan solusi IT yang hebat!
+              Yuk pesan layanan kami sekarang juga dan jadikan kami sebagai mitra terbaikmu dalam menghadirkan Brand Developer yang hebat!
             </p>
 
             {/* Trust badges */}
@@ -68,7 +68,7 @@ export default function CTA() {
               onClick={() => setShowModal(true)}
               className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-white text-purple-600 font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
-              Konsultasi Gratis
+              Pesan Sekarang
               <ArrowRight size={20} />
             </button>
           </div>
