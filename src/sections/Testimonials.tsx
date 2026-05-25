@@ -1,54 +1,122 @@
 "use client";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, Quote, ShieldCheck } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
-import { useLang } from "@/lib/langStore";
-import { localeText } from "@/lib/locale";
-import { testimonials } from "@/lib/data";
+
+const testimonials = [
+  {
+    project: "Website POS",
+    rating: "10/10",
+    text: "Tim sangat profesional dan responsif. Website POS yang dibuat sesuai dengan kebutuhan bisnis kami. Highly recommended!",
+    verified: true,
+    date: "12 Agu 2024",
+  },
+  {
+    project: "Aplikasi Android",
+    rating: "10/10",
+    text: "Aplikasi mobile yang dibuat sangat user-friendly dan performanya smooth. Terima kasih atas kerja kerasnya!",
+    verified: true,
+    date: "3 Jul 2024",
+  },
+  {
+    project: "ML Face Recognition",
+    rating: "10/10",
+    text: "Luar biasa! Sistem face recognition yang dibuat akurasinya tinggi dan integrasinya mudah. Perfect!",
+    verified: true,
+    date: "19 Sep 2024",
+  },
+  {
+    project: "E-Commerce Website",
+    rating: "10/10",
+    text: "Website e-commerce yang modern dan lengkap dengan fitur payment gateway. Penjualan online kami meningkat drastis!",
+    verified: true,
+    date: "15 Jun 2024",
+  },
+  {
+    project: "Dashboard Analytics",
+    rating: "10/10",
+    text: "Dashboard yang dibuat sangat informatif dan real-time. Membantu sekali dalam monitoring bisnis kami.",
+    verified: true,
+    date: "28 Mei 2024",
+  },
+  {
+    project: "API Integration",
+    rating: "10/10",
+    text: "Integrasi API berjalan lancar dan dokumentasinya lengkap. Tim sangat membantu dalam proses implementasi.",
+    verified: true,
+    date: "10 Apr 2024",
+  },
+];
 
 export default function Testimonials() {
-  const { lang } = useLang();
-  const t = localeText[lang];
-
   return (
-    <section className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute -top-12 left-1/4 w-48 h-48 rounded-full bg-purple-600/20 blur-3xl" />
-      <div className="absolute bottom-0 right-10 w-72 h-72 rounded-full bg-blue-600/15 blur-3xl" />
-      <div className="max-w-7xl mx-auto relative">
+    <section id="testimonials" className="py-24 px-6 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/5 to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto">
         <SectionHeading
-          badge={t.testimonials.badge}
-          titleFirst={t.testimonials.titleFirst}
-          titleAccent={t.testimonials.titleAccent}
+          badge="Testimoni"
+          titleFirst="Apa Kata"
+          titleAccent="Klien"
+          description="Testimoni & Kepercayaan - 🌟 Dipercaya oleh ratusan klien! Lihat apa kata mereka tentang kualitas layanan dan hasil kerja kami yang memuaskan."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((item, i) => (
+        {/* Trust Stats */}
+        <div className="flex flex-wrap justify-center gap-6 mb-12">
+          <div className="text-center px-6 py-3">
+            <div className="text-2xl font-black text-purple-400">250+</div>
+            <div className="text-xs text-zinc-500">Proyek Selesai</div>
+          </div>
+          <div className="text-center px-6 py-3">
+            <div className="text-2xl font-black text-purple-400">100%</div>
+            <div className="text-xs text-zinc-500">Kepuasan Terjamin</div>
+          </div>
+          <div className="text-center px-6 py-3">
+            <div className="text-2xl font-black text-purple-400">A+</div>
+            <div className="text-xs text-zinc-500">Hasil Berkualitas</div>
+          </div>
+        </div>
+
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, index) => (
             <motion.div
-              key={item.name}
-              initial={{ opacity: 0, y: 30 }}
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="glass rounded-[2rem] p-8 border border-white/10 bg-white/5 shadow-[0_30px_90px_rgba(124,58,237,0.14)] transition-all duration-500 hover:border-purple-400/30 hover:shadow-[0_40px_120px_rgba(124,58,237,0.22)]"
+              transition={{ delay: index * 0.05 }}
+              className="glass rounded-2xl border border-white/10 p-6 hover:border-purple-500/20 transition-all"
             >
-              <div className="flex items-center gap-2 mb-5">
-                {Array(5).fill(0).map((_, j) => (
-                  <Star key={j} size={14} className="fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-zinc-300 text-sm leading-relaxed mb-8">&ldquo;{item.text[lang]}&rdquo;</p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full p-0.5 bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg shadow-purple-500/20">
-                  <div className="w-full h-full rounded-full bg-[#07070f] flex items-center justify-center text-sm font-semibold text-white">
-                    {item.name.charAt(0)}
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+                    <Quote size={16} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-white">{testimonial.project}</div>
+                    <div className="text-xs text-zinc-500">{testimonial.date}</div>
                   </div>
                 </div>
-                <div>
-                  <div className="font-semibold text-sm text-white">{item.name}</div>
-                  <div className="text-xs text-zinc-500">{item.role[lang]}</div>
-                </div>
+                {testimonial.verified && (
+                  <div className="flex items-center gap-1 text-green-400 text-xs">
+                    <ShieldCheck size={14} />
+                    <span>Verified</span>
+                  </div>
+                )}
               </div>
+
+              {/* Rating */}
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} className="text-yellow-400 fill-yellow-400" />
+                ))}
+                <span className="ml-2 text-sm font-bold text-white">{testimonial.rating}</span>
+              </div>
+
+              {/* Text */}
+              <p className="text-sm text-zinc-400 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
             </motion.div>
           ))}
         </div>
