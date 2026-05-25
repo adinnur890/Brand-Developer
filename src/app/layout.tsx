@@ -14,7 +14,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className="antialiased" suppressHydrationWarning>{children}</body>
+      <body className="antialiased relative" suppressHydrationWarning>
+        {/* Animated Background Orbs */}
+        <div className="bg-orb bg-orb-1" />
+        <div className="bg-orb bg-orb-2" />
+        <div className="bg-orb bg-orb-3" />
+        <div className="bg-orb bg-orb-4" />
+        
+        {/* Grid Background */}
+        <div className="grid-background" />
+        
+        {/* Main Content */}
+        <div className="relative z-10">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
