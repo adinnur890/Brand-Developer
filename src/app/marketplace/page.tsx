@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Search, ArrowLeft, Star, ShoppingCart, ChevronDown, Eye } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, ArrowLeft, Star, ShoppingCart, ChevronDown, Eye, X, Check, MessageCircle, User, Phone, Mail, Send } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 
@@ -146,6 +146,8 @@ const categories = [
 
 const sortOptions = ["Terpopuler", "Harga Terendah", "Harga Tertinggi", "Terbaru"];
 
+const adminWhatsApp = "6287817649178";
+
 const formatRupiah = (price: number) => {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -159,6 +161,8 @@ export default function MarketplacePage() {
   const [activeCategory, setActiveCategory] = useState("Semua");
   const [sortBy, setSortBy] = useState("Terpopuler");
   const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [orderForm, setOrderForm] = useState({ name: "", whatsapp: "", email: "", message: "" });
 
   // Filter products
   const filteredProducts = products.filter((product) => {
@@ -335,7 +339,10 @@ export default function MarketplacePage() {
                     <div className="text-base font-black text-white">{formatRupiah(product.price)}</div>
                     <div className="text-xs text-zinc-500 line-through">{formatRupiah(product.originalPrice)}</div>
                   </div>
-                  <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-semibold hover:opacity-90 transition-opacity">
+                  <button
+                    onClick={() => setSelectedProduct(product)}
+                    className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-semibold hover:opacity-90 transition-opacity"
+                  >
                     Beli
                   </button>
                 </div>
@@ -344,6 +351,208 @@ export default function MarketplacePage() {
           </div>
 
           {/* Empty State */}
+          {/* Product Detail Modal */}
+          <AnimatePresence>
+            {selectedProduct && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                onClick={() => setSelectedProduct(null)}
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  className="relative w-full max-w-lg bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 max-h-[90vh] overflow-y-auto"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedProduct(null)}
+                    className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
+
+                  {/* Preview Badge */}
+                  <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-semibold mb-4">
+                    <Star size={12} className="fill-purple-400" />
+                    Preview
+                  </div>
+                  <div className="text-xs text-zinc-500 mb-2">Coming Soon</div>
+
+                  {/* Title */}
+                  <h2 className="text-xl font-bold text-white mb-2">{selectedProduct.title}</h2>
+                  <p className="text-sm text-zinc-400 mb-4">{selectedProduct.description}</p>
+
+                  {/* Rating */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center gap-1">
+                      <Star className="text-yellow-400 fill-yellow-400" size={16} />
+                      <span className="text-white font-semibold">{selectedProduct.rating}</span>
+                    </div>
+                    <span className="text-zinc-500 text-sm">({selectedProduct.reviews} reviews)</span>
+                  </div>
+
+                  {/* Discount Badge */}
+                  <div className="inline-block px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-sm font-semibold mb-3">
+                    -{Math.round((1 - selectedProduct.price / selectedProduct.originalPrice) * 100)}%
+                  </div>
+
+                  {/* Price */}
+                  <div className="mb-5">
+                    <div className="text-2xl font-black text-white">{formatRupiah(selectedProduct.price)}</div>
+                    <div className="text-sm text-zinc-500 line-through">{formatRupiah(selectedProduct.originalPrice)}</div>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {selectedProduct.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs border border-purple-500/20"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Benefits */}
+                  <div className="mb-6">
+                    <h3 className="text-sm font-semibold text-white mb-3">Benefit:</h3>
+                    <ul className="space-y-2">
+                      {selectedProduct.tags.slice(0, 4).map((benefit, i) => (
+                        <li key={i} className="text-sm text-zinc-300 flex items-center gap-2">
+                          <Check className="text-green-400" size={14} />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Chat Admin */}
+                  <div className="mb-5 p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <MessageCircle className="text-purple-400" size={16} />
+                      <span className="text-sm font-semibold text-white">Chat Admin Langsung</span>
+                    </div>
+                    <a
+                      href={`https://wa.me/${adminWhatsApp}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-purple-400 hover:text-purple-300"
+                    >
+                      {adminWhatsApp.replace(/(\d{4})(\d{4})(\d{4})/, "$1-$2-$3")}
+                    </a>
+                  </div>
+
+                  {/* WhatsApp Button */}
+                  <a
+                    href={`https://wa.me/${adminWhatsApp}?text=Halo, saya tertarik dengan ${encodeURIComponent(selectedProduct.title)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-green-600 text-white font-semibold text-sm hover:bg-green-700 transition-colors mb-4"
+                  >
+                    <MessageCircle size={18} />
+                    Chat WhatsApp Sekarang
+                  </a>
+
+                  {/* Divider */}
+                  <div className="relative mb-5">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-white/10"></div>
+                    </div>
+                    <div className="relative flex justify-center text-xs text-zinc-500">
+                      <span className="px-4 bg-[#0a0a0a]">Atau Isi Data Anda</span>
+                    </div>
+                  </div>
+
+                  {/* Order Form */}
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const message = `Halo, saya ingin memesan ${selectedProduct.title}%0A%0ANama: ${orderForm.name}%0AWA: ${orderForm.whatsapp}%0AEmail: ${orderForm.email}%0APesan: ${orderForm.message}`;
+                      window.open(`https://wa.me/${adminWhatsApp}?text=${message}`, "_blank");
+                    }}
+                    className="space-y-4"
+                  >
+                    <div>
+                      <label className="block text-xs font-semibold text-white mb-2">Nama Lengkap *</label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={16} />
+                        <input
+                          type="text"
+                          required
+                          value={orderForm.name}
+                          onChange={(e) => setOrderForm({ ...orderForm, name: e.target.value })}
+                          placeholder="Masukkan nama Anda"
+                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 transition-colors text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-white mb-2">Nomor WhatsApp *</label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={16} />
+                        <input
+                          type="tel"
+                          required
+                          value={orderForm.whatsapp}
+                          onChange={(e) => setOrderForm({ ...orderForm, whatsapp: e.target.value })}
+                          placeholder="08123456789"
+                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 transition-colors text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-white mb-2">Email (Opsional)</label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={16} />
+                        <input
+                          type="email"
+                          value={orderForm.email}
+                          onChange={(e) => setOrderForm({ ...orderForm, email: e.target.value })}
+                          placeholder="email@example.com"
+                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 transition-colors text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-white mb-2">Pesan Tambahan</label>
+                      <textarea
+                        value={orderForm.message}
+                        onChange={(e) => setOrderForm({ ...orderForm, message: e.target.value })}
+                        placeholder="Ceritakan kebutuhan spesifik Anda..."
+                        rows={3}
+                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 transition-colors text-sm resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                    >
+                      <Send size={18} />
+                      Kirim Pesanan
+                    </button>
+                  </form>
+
+                  {/* Tip */}
+                  <div className="mt-4 p-3 rounded-xl bg-yellow-500/10 border border-yellow-500/20">
+                    <p className="text-xs text-yellow-400">
+                      💡 <strong>Tips:</strong> Untuk respon lebih cepat, gunakan WhatsApp langsung. Admin akan membalas dalam 1-2 jam kerja.
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {filteredProducts.length === 0 && (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🔍</div>
