@@ -178,12 +178,12 @@ export default function MarketplacePage() {
       {/* Search & Filters */}
       <section className="px-6 py-8">
         <div className="max-w-7xl mx-auto">
-          <p className="text-zinc-400 text-center mb-8">
+          <p className="text-zinc-400 mb-8">
             Temukan template, aplikasi, dan solusi IT siap pakai
           </p>
 
           {/* Search Bar */}
-          <div className="relative max-w-2xl mx-auto mb-8">
+          <div className="relative max-w-xl mb-8">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={20} />
             <input
               type="text"
@@ -195,7 +195,7 @@ export default function MarketplacePage() {
           </div>
 
           {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap gap-2">
             {categories.map((cat, index) => (
               <button
                 key={index}
