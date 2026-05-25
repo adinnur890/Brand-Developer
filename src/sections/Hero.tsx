@@ -11,28 +11,39 @@ export default function Hero() {
       { top: "60%", left: "20%", delay: "2s", duration: "3s" },
       { top: "80%", left: "70%", delay: "0.5s", duration: "6s" },
       { top: "40%", left: "90%", delay: "1.5s", duration: "4s" },
+      { top: "15%", left: "50%", delay: "2.5s", duration: "5s" },
+      { top: "70%", left: "40%", delay: "3s", duration: "4s" },
+      { top: "50%", left: "10%", delay: "0.8s", duration: "3s" },
     ],
     []
   );
 
   return (
     <section id="home" className="relative py-28 lg:py-36 overflow-hidden">
-      {/* Background Orbs */}
+      {/* Hero-specific Background Orbs */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/15 rounded-full blur-[100px] animate-float" />
+        {/* Main spotlight glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-600/15 to-blue-600/15 rounded-full blur-[120px] animate-[ambientPulse_8s_ease-in-out_infinite]" />
+        
+        {/* Secondary orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/12 rounded-full blur-[100px] animate-float" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] animate-float-slow" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-64 h-64 bg-pink-600/8 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-pink-600/8 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-1/3 left-1/3 w-72 h-72 bg-cyan-600/8 rounded-full blur-[100px] animate-float-slow" style={{ animationDelay: '3s' }} />
       </div>
 
+      {/* Mesh gradient overlay */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.08),transparent_70%)]" />
+
       {/* Grid overlay */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(124,58,237,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(124,58,237,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       {/* Floating particles */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         {particles.map((particle, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-purple-500/30 rounded-full animate-float"
+            className="absolute w-1.5 h-1.5 bg-purple-500/40 rounded-full animate-float"
             style={{
               top: particle.top,
               left: particle.left,
