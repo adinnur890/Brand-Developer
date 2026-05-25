@@ -37,12 +37,15 @@ export default function Hero() {
       {/* Animated gradient background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-3xl" />
-        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-900/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-900/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        {/* Additional animated orbs */}
+        <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/4 right-1/3 w-[250px] h-[250px] bg-blue-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
       </div>
 
-      {/* Grid overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(124,58,237,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.04)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      {/* Grid overlay with subtle animation */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(124,58,237,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.05)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -107,7 +110,7 @@ export default function Hero() {
         >
           <a
             href="#contact"
-            className="group px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 font-semibold text-white text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center gap-2"
+            className="group px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 font-semibold text-white text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center gap-2 animate-glow"
           >
             <Code2 size={18} />
             Pesan Jasa
@@ -115,7 +118,7 @@ export default function Hero() {
           </a>
           <a
             href="/marketplace"
-            className="px-8 py-4 rounded-full bg-white/5 font-semibold text-white text-sm hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-sm"
+            className="px-8 py-4 rounded-full bg-white/5 font-semibold text-white text-sm hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-sm hover:border-purple-500/30"
           >
             Program Siap Pakai
           </a>
