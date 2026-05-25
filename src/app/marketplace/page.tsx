@@ -160,12 +160,28 @@ export default function MarketplacePage() {
   const [sortBy, setSortBy] = useState("Terpopuler");
   const [showSortDropdown, setShowSortDropdown] = useState(false);
 
+  // Filter products
   const filteredProducts = products.filter((product) => {
     const matchesCategory = activeCategory === "Semua" || product.category === activeCategory;
     const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
+  });
+
+  // Sort products
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case "Harga Terendah":
+        return a.price - b.price;
+      case "Harga Tertinggi":
+        return b.price - a.price;
+      case "Terbaru":
+        return b.id - a.id;
+      case "Terpopuler":
+      default:
+        return b.reviews - a.reviews;
+    }
   });
 
   return (
@@ -259,7 +275,7 @@ export default function MarketplacePage() {
       <section className="px-6 pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredProducts.map((product, index) => (
+            {sortedProducts.map((product, index) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
