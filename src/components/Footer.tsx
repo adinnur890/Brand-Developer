@@ -6,6 +6,24 @@ export default function Footer() {
     <footer id="contact" className="border-t border-white/10 bg-[#050505]">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="relative w-8 h-8">
+                <Image
+                  src="/brand-developer.svg"
+                  alt="Brand Developer"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span className="text-white font-bold text-lg">Brand Developer</span>
+            </div>
+            <p className="text-sm text-zinc-500 mb-4">
+              Jasa IT Profesional untuk Mahasiswa. Bantu tugas, project, dan deadline IT dengan cepat, rapi, dan terpercaya.
+            </p>
+          </div>
+
           {/* Layanan */}
           <div>
             <h4 className="text-white font-semibold mb-4">Layanan</h4>
