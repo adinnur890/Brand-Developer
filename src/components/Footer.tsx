@@ -123,7 +123,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-zinc-500 text-xs">
-            © {new Date().getFullYear()} Brand Developer. All rights reserved.
+            © {new Date().getFullYear()} Brand Developer. All rights reserved. | Dibuat dengan ❤️ Brand Developer
           </p>
         </div>
       </div>
