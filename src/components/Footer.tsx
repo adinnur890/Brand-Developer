@@ -121,18 +121,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-zinc-500 text-sm">
+        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-zinc-500 text-xs">
             © {new Date().getFullYear()} Brand Developer. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-zinc-500 hover:text-white transition-colors text-sm">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-zinc-500 hover:text-white transition-colors text-sm">
-              Terms of Service
-            </a>
-          </div>
         </div>
       </div>
     </footer>
