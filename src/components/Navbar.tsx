@@ -64,12 +64,12 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center">
             <a
-              href="https://wa.me/6283879204375?text=Halo%2C%20saya%20tertarik%20untuk%20pesan%20layanan"
+              href="https://wa.me/6283879204375?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20gratis"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
             >
-              Pesan
+              Konsultasi Gratis
               <ArrowRight size={16} />
             </a>
           </div>
@@ -103,12 +103,12 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://wa.me/6283879204375?text=Halo%2C%20saya%20tertarik%20untuk%20pesan%20layanan"
+              href="https://wa.me/6283879204375?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20gratis"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:opacity-90 transition-opacity"
             >
-              Pesan
+              Konsultasi Gratis
               <ArrowRight size={16} />
             </a>
           </div>
