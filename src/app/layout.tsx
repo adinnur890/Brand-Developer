@@ -27,15 +27,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="absolute -bottom-24 left-1/3 w-[180px] h-[180px] bg-pink-600/10 rounded-full blur-[32px] animate-[orbFloat_16s_ease-in-out_infinite]" style={{ animationDelay: '-10s' }} />
         </div>
 
-        {/* Grid Background */}
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(124,58,237,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        {/* Grid Background - only on md+ */}
+        <div className="hidden md:block fixed inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(124,58,237,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.04)_1px,transparent_1px)] bg-[size:60px_60px] opacity-80" />
         </div>
 
-        {/* Radial Gradient Overlay for Depth */}
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,0.10),transparent_60%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(59,130,246,0.09),transparent_60%)]" />
+        {/* Radial Gradient Overlay for Depth - only on md+ */}
+        <div className="hidden md:block fixed inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,0.08),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(59,130,246,0.06),transparent_60%)]" />
         </div>
 
         {/* Main Content - glass and premium spacing */}
