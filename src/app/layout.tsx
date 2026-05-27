@@ -18,13 +18,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Global Animated Background Orbs & Glow */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
           {/* Purple Orb - Top Left */}
-          <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-purple-600/25 rounded-full blur-[160px] animate-[orbFloat_25s_ease-in-out_infinite] neon-glow" />
+          <div className="absolute -top-24 -left-24 w-[320px] h-[320px] bg-purple-600/15 rounded-full blur-[60px] animate-[orbFloat_12s_ease-in-out_infinite]" />
           {/* Blue Orb - Top Right */}
-          <div className="absolute top-20 -right-40 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[140px] animate-[orbFloat_30s_ease-in-out_infinite_reverse] neon-glow" />
+          <div className="absolute top-10 -right-24 w-[220px] h-[220px] bg-blue-600/10 rounded-full blur-[40px] animate-[orbFloat_14s_ease-in-out_infinite_reverse]" />
           {/* Cyan Orb - Center */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-600/15 rounded-full blur-[140px] animate-[orbFloat_20s_ease-in-out_infinite] neon-glow" style={{ animationDelay: '-5s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] bg-cyan-600/8 rounded-full blur-[32px] animate-[orbFloat_10s_ease-in-out_infinite]" style={{ animationDelay: '-5s' }} />
           {/* Pink Orb - Bottom */}
-          <div className="absolute -bottom-40 left-1/3 w-[450px] h-[450px] bg-pink-600/16 rounded-full blur-[140px] animate-[orbFloat_28s_ease-in-out_infinite] neon-glow" style={{ animationDelay: '-10s' }} />
+          <div className="absolute -bottom-24 left-1/3 w-[180px] h-[180px] bg-pink-600/10 rounded-full blur-[32px] animate-[orbFloat_16s_ease-in-out_infinite]" style={{ animationDelay: '-10s' }} />
         </div>
 
         {/* Grid Background */}
