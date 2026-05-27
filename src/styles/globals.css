@@ -60,10 +60,18 @@ body {
 /* Glassmorphism & Neon Glow */
 .glass-premium {
   background: var(--bg-card);
-  backdrop-filter: blur(32px) saturate(180%);
-  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1.5px solid rgba(255,255,255,0.08);
   box-shadow: 0 4px 32px 0 rgba(139,92,246,0.12), 0 1.5px 8px 0 rgba(59,130,246,0.10);
+}
+
+/* Mobile optimization - reduce blur for better performance */
+@media (max-width: 768px) {
+  .glass-premium {
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+  }
 }
 
 .neon-glow {
@@ -83,11 +91,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(135deg, #8B5CF6 30%, #3B82F6 70%);
   border-radius: 8px;
-}
-
-/* Smooth transitions for all */
-* {
-  transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s;
 }
 
 /* Animated background orbs */
@@ -252,14 +255,14 @@ body {
 /* Glass morphism */
 .glass {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.glass-premium {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(6px);
+  }
 }
 
 /* Gradient text */
@@ -382,3 +385,43 @@ body {
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
+
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .animate-float,
+  .animate-float-slow {
+    animation-duration: 8s;
+    animation-iteration-count: 3;
+  }
+  
+  /* Slower marquee on mobile for better performance */
+  .animate-marquee-left {
+    animation-duration: 45s;
+  }
+  
+  .animate-marquee-right {
+    animation-duration: 50s;
+  }
+  
+  /* Reduce glow animation on mobile */
+  .animate-glow {
+    animation-duration: 6s;
+  }
+  
+  /* Disable heavy box-shadow animations on mobile */
+  .glow-pulse {
+    animation: none;
+  }
+}
+
+/* Prefer reduced motion - accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

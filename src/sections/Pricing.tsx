@@ -6,7 +6,9 @@ import { useLang } from "@/lib/langStore";
 import { localeText, whatsappMessages } from "@/lib/locale";
 import { pricingPlans } from "@/lib/data";
 
-export default function Pricing() {
+import { memo } from "react";
+
+function Pricing() {
   const { lang } = useLang();
   const t = localeText[lang];
   const WA_LINK = `https://wa.me/6283879204375?text=${encodeURIComponent(whatsappMessages[lang])}`;
@@ -53,3 +55,4 @@ export default function Pricing() {
     </section>
   );
 }
+export default memo(Pricing);

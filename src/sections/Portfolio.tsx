@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { memo } from "react";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
@@ -7,7 +8,7 @@ import { useLang } from "@/lib/langStore";
 import { localeText } from "@/lib/locale";
 import { portfolio } from "@/lib/data";
 
-export default function Portfolio() {
+function Portfolio() {
   const { lang } = useLang();
   const t = localeText[lang];
 
@@ -88,3 +89,4 @@ export default function Portfolio() {
     </section>
   );
 }
+export default memo(Portfolio);

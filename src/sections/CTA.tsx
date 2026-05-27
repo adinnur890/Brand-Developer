@@ -28,22 +28,21 @@ export default function CTA() {
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
       {/* CTA-specific Background */}
-      <div className="absolute inset-0 -z-10">
+      {/* Background effect: solid gradient on mobile, orbs/mesh/grid only on md+ */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-purple-900/80 via-blue-900/70 to-pink-900/80 md:bg-none" />
+      <div className="hidden md:block absolute inset-0 -z-10">
         {/* Main glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-600/12 to-pink-600/12 rounded-full blur-[120px] animate-[ambientPulse_10s_ease-in-out_infinite]" />
-        
         {/* Secondary orbs */}
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-600/10 rounded-full blur-[100px] animate-float" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-pink-600/8 rounded-full blur-[100px] animate-float-slow" />
         <div className="absolute top-1/3 right-1/3 w-56 h-56 bg-cyan-600/6 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
+        {/* Mesh gradient overlay */}
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(124,58,237,0.06),transparent_60%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_right,rgba(236,72,153,0.05),transparent_60%)]" />
+        {/* Grid overlay */}
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(124,58,237,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
-
-      {/* Mesh gradient overlay */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(124,58,237,0.06),transparent_60%)]" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_right,rgba(236,72,153,0.05),transparent_60%)]" />
-
-      {/* Grid overlay */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(124,58,237,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       <div className="max-w-5xl mx-auto">
         <motion.div

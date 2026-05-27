@@ -1,10 +1,13 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/sections/Hero";
 import Stats from "@/sections/Stats";
-import Services from "@/sections/Services";
-import OrderOptions from "@/sections/OrderOptions";
-import FAQ from "@/sections/FAQ";
-import CTA from "@/sections/CTA";
+import dynamic from "next/dynamic";
+const Services = dynamic(() => import("@/sections/Services"), { ssr: false, loading: () => <div style={{minHeight:200, textAlign:'center'}}>Loading Services...</div> });
+const OrderOptions = dynamic(() => import("@/sections/OrderOptions"), { ssr: false, loading: () => <div style={{minHeight:200, textAlign:'center'}}>Loading Order Options...</div> });
+const FAQ = dynamic(() => import("@/sections/FAQ"), { ssr: false, loading: () => <div style={{minHeight:200, textAlign:'center'}}>Loading FAQ...</div> });
+const CTA = dynamic(() => import("@/sections/CTA"), { ssr: false, loading: () => <div style={{minHeight:200, textAlign:'center'}}>Loading CTA...</div> });
 import Footer from "@/components/Footer";
 
 export default function Home() {

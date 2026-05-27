@@ -39,7 +39,9 @@ const digitalProducts = [
   },
 ];
 
-export default function Products() {
+import { memo } from "react";
+
+function Products() {
   return (
     <section id="products" className="py-24 px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/5 to-transparent pointer-events-none" />
@@ -113,3 +115,4 @@ export default function Products() {
     </section>
   );
 }
+export default memo(Products);

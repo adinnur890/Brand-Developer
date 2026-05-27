@@ -65,7 +65,9 @@ const serviceToProduct = (service: { title: string; description: string; benefit
   originalPrice: service.price * 1.5,
 });
 
-export default function Services() {
+import { memo } from "react";
+
+function Services() {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [orderForm, setOrderForm] = useState({ name: "", whatsapp: "", email: "", message: "" });
   return (
@@ -377,3 +379,4 @@ export default function Services() {
     </section>
   );
 }
+export default memo(Services);

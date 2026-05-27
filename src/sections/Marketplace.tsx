@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { memo } from "react";
 import { Star, ShoppingCart, Search, Filter } from "lucide-react";
 import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
@@ -81,7 +82,7 @@ const categories = [
   { name: "UI/UX", count: 2 },
 ];
 
-export default function Marketplace() {
+function Marketplace() {
   const formatRupiah = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -227,3 +228,4 @@ export default function Marketplace() {
     </section>
   );
 }
+export default memo(Marketplace);

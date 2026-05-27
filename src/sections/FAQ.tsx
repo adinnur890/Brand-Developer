@@ -241,10 +241,7 @@ export default function FAQ() {
                         Kirim Email
                       </>
                     ) : (
-                      <>
-                        <MessageCircle size={16} />
-                        Buka WA
-                      </>
+                      <>Kirim via WhatsApp</>
                     )}
                   </button>
                 </div>

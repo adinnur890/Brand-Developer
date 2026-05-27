@@ -4,19 +4,36 @@ import { motion } from "framer-motion";
 import { ArrowRight, Code2, Sparkles, Zap, Shield, Globe } from "lucide-react";
 
 export default function Hero() {
+  // Reduced particles for mobile performance
   const particles = useMemo(
     () => [
-      { top: "10%", left: "15%", delay: "0s", duration: "4s" },
-      { top: "25%", left: "80%", delay: "1s", duration: "5s" },
-      { top: "60%", left: "20%", delay: "2s", duration: "3s" },
-      { top: "80%", left: "70%", delay: "0.5s", duration: "6s" },
-      { top: "40%", left: "90%", delay: "1.5s", duration: "4s" },
-      { top: "15%", left: "50%", delay: "2.5s", duration: "5s" },
-      { top: "70%", left: "40%", delay: "3s", duration: "4s" },
-      { top: "50%", left: "10%", delay: "0.8s", duration: "3s" },
+      { top: "10%", left: "15%", delay: "0s", duration: "6s" },
+      { top: "60%", left: "80%", delay: "2s", duration: "8s" },
+      { top: "80%", left: "20%", delay: "4s", duration: "7s" },
     ],
     []
   );
+
+  // Animation variants for mobile optimization
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
 
   return (
     <section id="home" className="relative py-28 lg:py-36 overflow-hidden">
