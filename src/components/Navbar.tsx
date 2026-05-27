@@ -30,9 +30,11 @@ export default function Navbar() {
       className={`fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none`}
     >
       <div
-        className={`glass-premium neon-glow shadow-premium rounded-full border border-white/10 transition-all duration-300 pointer-events-auto
-        ${isScrolled ? "scale-95 shadow-xl" : "scale-100"}
-        w-full max-w-5xl mx-4 backdrop-blur-2xl bg-white/10/5`}
+        className={`rounded-full border border-white/10 transition-all duration-300 pointer-events-auto
+        ${isScrolled ? "scale-95 shadow-md" : "scale-100"}
+        w-full max-w-5xl mx-4
+        bg-zinc-900/80 md:bg-white/10/5
+        md:shadow-lg md:glass-premium md:neon-glow md:shadow-premium`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-16 md:h-20">
